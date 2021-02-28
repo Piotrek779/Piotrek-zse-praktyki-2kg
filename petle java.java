@@ -1,8 +1,8 @@
-package first_week.loops.zadanie2;
+package first_week.petle.zadanie2;
 
 import java.util.Scanner;
 
-public class Zadania_Pętle {
+public class Zad_Pętelki {
     public static void main(String[] args) {
 
         // Z1
