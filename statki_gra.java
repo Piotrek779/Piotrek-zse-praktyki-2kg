@@ -10,8 +10,8 @@ public class statki_gra {
     public static String[][] grid = new String[numRows][numCols];
 
     public static void main(String[] args){
-        System.out.println("**** Witaj w grze statki ****");
-        System.out.println("**** ocean jest pusty **** \n");
+        System.out.println("****\t Witaj w grze statki ****");
+        System.out.println("****\t ocean jest pusty **** \n");
 
         createOceanMap();
         deployPlayerShips();
