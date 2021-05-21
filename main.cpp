@@ -1,55 +1,28 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <conio.h>
 #include <windows.h>
+#include <ctime>
+#include <cstdlib>
 
 using namespace std;
 
-int liczba_graczy, rzut1, rzut2, wyniki_1[4], wyniki_2[4], suma[4],najw_wynik[1],command;
+void menu();
+void gra();
+
+
+int main() {
+	
+	menu();
+	
+}
+
+
+int liczba_graczy, rzut1, rzut2, wyniki_1[4], wyniki_2[4], suma[4], command, max;
 
 string nick[4];
 
-void gra() {
-	
-srand((unsigned)time(0));
-cout << "Ilu graczy jest przy stole (max4)" << endl;
-cin >> liczba_graczy;
-
-if (liczba_graczy > 4) {
-cout << "Graczy jest za duzo, sprobuj ponownie"<< endl; Sleep(2000);
-gra();
-}
-else {
-for (int i = 0; i < liczba_graczy; i++) {
-cout << "Podaj swoj nick" << endl;
-cin >> nick[i];
-}
-
-for (int i = 0; i < liczba_graczy; i++) {
-rzut1 = rand() % 6 + 1;
-rzut2 = rand() % 6 + 1;
-wyniki_1[i] = rzut1;
-wyniki_2[i] = rzut2;
-suma[i] = rzut1 + rzut2;
-if(wyniki_1[i] > najw_wynik[i]) {
-		najw_wynik[i] = wyniki_1[i];
-	} 
-}
-
-	for (int i = 0; i < liczba_graczy; i++) {
-cout << nick[i] << " uzyskal z jednej kostki " << wyniki_1[i] << endl;
-cout << nick[i] << " uzyskal z drugiej kostki " << wyniki_2[i] << endl;
-cout << nick[i] << " uzyskal lacznie " << suma[i] << endl;
-cout << nick[i] << "wygral, uzyskal najwiecej punktow " << najw_wynik[i] << endl;
-	}
-}
-	
-}
-
 
 void menu() {
-	cout << "****** witaj w grze ******" << endl;
+		cout << "****** witaj w grze ******" << endl;
 	cout << "* 1. Start gry      \t*" << endl;
 	cout << "* 2. Wyjscie z gry  \t*" << endl;
 	cout << "**************************" << endl;
@@ -74,8 +47,46 @@ void menu() {
 	}
 }
 
-int main() {
-
-menu();
-
+void gra() {
+	
+	srand((unsigned)time(0));
+	cout << "ilu jest graczy (max 4)" << endl;
+	cin >> liczba_graczy;
+	
+	
+	if(liczba_graczy < 1 || liczba_graczy > 4) 
+	{
+		cout << "nieprawidlowa ilosc graczy sprobuj ponownie" << endl; Sleep(2000);
+		gra();
+	}
+	else 
+	{
+		for (int i = 0; i < liczba_graczy; i++) 
+		{
+			cout << "podaj swoj nick" << endl;
+			cin >> nick[i];
+		}
+		for (int i = 0; i < liczba_graczy; i++) 
+		{
+			rzut1 = rand() % 6 + 1;
+			rzut2 = rand() % 6 + 1;
+			wyniki_1[i] = rzut1;
+			wyniki_2[i] = rzut2;
+			suma[i] = rzut1 + rzut2;
+		}
+	}
+		max = suma[0];
+		for (int i = 1; i < liczba_graczy; i ++) 
+		{
+			if (max > suma[i])	
+				max = suma[i];
+		}
+	
+	for (int i = 0; i < liczba_graczy; i++) 
+	{
+		cout << nick[i] << " uzyskal z jednej kostki " << wyniki_1[i] << endl;
+		cout << nick[i] << " uzyskal z drugiej kostki " << wyniki_2[i] << endl;
+		cout << nick[i] << " uzyskal lacznie " << suma[i] << endl;	
+		cout << nick[i] << " wygral bo ma najwiecej punktow " << max << endl;
+	}
 }
